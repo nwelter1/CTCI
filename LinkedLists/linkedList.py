@@ -2,8 +2,6 @@
 # https://zippy-lan-200.notion.site/Intro-to-Linked-Lists-2ea969ab51874fb688d15973ffa12a61
 
 # Linked Lists
-from email import header
-
 
 class Node:
     def __init__(self, value, next = None):
@@ -41,6 +39,37 @@ class LinkedList:
             print(f'New node is at:{last}')
         last.next = new_node
 
+
+    # traversing the list 
+    def traverse(self):
+        if self.head is None or self.head.next is None:
+            return self.head
+        temp = self.head
+
+        while temp:
+            print(temp.value)
+            temp = temp.next
+
+    # insertAfter
+    def insertAfter(self,prev_node, new_value):
+        if prev_node is None:
+            print('The previous node must be there!')
+            return
+        new_node = Node(new_value)
+
+        new_node.next = prev_node.next
+
+        prev_node.next = new_node
+
+
+        
+    def deleteDuplicates(self, head):
+        temp = head
+        while temp:
+            while temp.next and temp.next.val == temp.val:
+                temp.next = temp.next.next
+            temp = temp.next
+        return head
     def removeDups(self):
         if self.head is None:
             return self.head
@@ -78,8 +107,7 @@ my_list = LinkedList()
 my_list.pushOn('Nate')
 my_list.pushOn("Billy")
 my_list.append('Coding Temple')
-new_list = my_list.reverseIt(my_list.head)
-print(new_list.next.next)
+my_list.traverse()
 
 
 

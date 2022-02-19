@@ -85,7 +85,7 @@ class LinkedList:
                 temp = temp.next
         return self.head
 
-    def reverseIt(self,head):
+    def reverseRec(self,head):
         if head is None:
             return None
         if head.next is None:
@@ -95,6 +95,19 @@ class LinkedList:
         head.next.next = head
         head.next = None
         return new_head
+    
+    def reverseIt(self, head):
+        """
+        :type head: ListNode
+        :rtype: ListNode
+        """
+        prev = None
+        while head:
+            temp = head.next
+            head.next = prev
+            prev = head
+            head = temp
+        return prev
 
     
 
@@ -107,7 +120,7 @@ my_list = LinkedList()
 my_list.pushOn('Nate')
 my_list.pushOn("Billy")
 my_list.append('Coding Temple')
-my_list.traverse()
+print(my_list.reverseIt(my_list.head).value)
 
 
 
